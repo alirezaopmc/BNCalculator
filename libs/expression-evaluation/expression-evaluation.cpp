@@ -64,6 +64,7 @@ BigNumber evaluate(std::string tokens) {
             while (i < tokens.length() && isdigit(tokens[i])) {
                 value += tokens[i++];
             }
+            --i;
             values.push(BigNumber(value));
         } else if (tokens[i] == ')') {
             while(!operators.empty() && operators.top() != '(') {

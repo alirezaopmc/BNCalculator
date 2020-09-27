@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Big Number Calculator",
   "main": "server.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SleepingJempa/BNCalculator.git"
@@ -17,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/SleepingJempa/BNCalculator/issues"
   },
-  "homepage": "https://github.com/SleepingJempa/BNCalculator#readme"
+  "homepage": "https://github.com/SleepingJempa/BNCalculator#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

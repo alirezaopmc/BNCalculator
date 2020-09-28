@@ -3,16 +3,14 @@ const fs = require("fs")
 
 const solve = (str) => {
     let command = `${__dirname}/./a.out '${str}'`
-    console.log(command)
+    
     const result = execSync(command).toString().replace('\n', '')
-    console.log(`result = ${result}`)
+    
     return result
 }
 
 module.exports = {
-    solve,
-    // save,
-    // load
+    solve
 }
 
 // console.log(solve('13*2'))

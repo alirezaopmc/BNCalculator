@@ -1,10 +1,9 @@
 const { exec } = require("child_process")
 const fs = require("fs")
 
-const commandTemple = './a.out '
-
 const solve = (str) => {
-    let command = commandTemple + str
+    let command = `${__dirname}/./a.out '${str}'`
+    console.log(command)
     const out = exec(command, (error, stdout, stderr) => {
         console.log(`stdout: ${stdout}`)
         let out = {
@@ -17,12 +16,20 @@ const solve = (str) => {
 
 const save = (out) => {
     let outString = JSON.stringify(out).replace('\\n', '')
-    fs.writeFileSync('out.json', outString)
+    fs.writeFileSync(__dirname + '/out.json', outString)
+}
+
+const load = () => {
+    let inString
+    let path = `${__dirname}/out.json`
+    return require(path)
 }
 
 module.exports = {
     solve,
-    save
+    save,
+    load
 }
 
-solve('12-23')
+// solve('13*2')
+// console.log(load())

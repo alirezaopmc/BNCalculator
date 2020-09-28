@@ -25,4 +25,4 @@ module.exports = {
     save
 }
 
-// solve('12-23')
+solve('12-23')

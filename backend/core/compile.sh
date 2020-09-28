@@ -1,0 +1,1 @@
+g++ backend/core/caller.cpp libs/big-number/big-number.cpp libs/expression-evaluation/expression-evaluation.cpp -o backend/core/a.out

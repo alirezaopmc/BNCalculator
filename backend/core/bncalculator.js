@@ -20,4 +20,9 @@ const save = (out) => {
     fs.writeFileSync('out.json', outString)
 }
 
-solve('12-23')
+module.exports = {
+    solve,
+    save
+}
+
+// solve('12-23')

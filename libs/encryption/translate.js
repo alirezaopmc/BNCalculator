@@ -1,7 +1,7 @@
 const fs = require('fs')
 
-let dictionaryData = fs.readFileSync('dictionary.json')
-let dictionary = JSON.parse(dictionaryData)
+let dictionary = require('./dictionary')
+// let dictionary = JSON.parse(dictionaryData)
 
 const translate = (str) => {
     return result = str.split('').map(c => dictionary[c]).join('')

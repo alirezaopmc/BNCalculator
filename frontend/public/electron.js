@@ -14,8 +14,6 @@ function createWindow() {
     width: 400,
     height: 580,
     frame: false,
-    transparent: true,
-    vibrancy: 'ultra-dark',
     resizable: false,
     webPreferences: { nodeIntegration: true },
   });

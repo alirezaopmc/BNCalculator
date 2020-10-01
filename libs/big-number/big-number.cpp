@@ -327,21 +327,16 @@ BigNumber BigNumber::divide(BigNumber other) {
 
         while (b * 10 < a) b *= 10;
 
-        while (a >= b && b > 0) {
-            BigNumber temp = a;
-            a -= b;
-            quotient += 1;
-            if (a < b && a > 0) {
-                b /= 10;
-                quotient *= 10;
+        while (b > 0) {
+            while(a >= b) {
+                a -= b;
+                quotient += 1;
             }
-            if (a == 0) {
-                while (temp._numberString[temp._numberString.length() - 1] == '0') {
-                    temp /= 10;
-                    quotient *= 10;
-                }
-            }
+            b /= 10;
+            quotient *= 10;
         }
+
+        quotient /= 10;
     }
 
     if (sign) {

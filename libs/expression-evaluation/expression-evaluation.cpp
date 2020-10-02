@@ -32,6 +32,7 @@
 int precedence(char _operator) {
 	if(_operator == '+'|| _operator == '-') return 1; 
 	if(_operator == '*'|| _operator == '/') return 2;
+    if(_operator == '^') return 3;
 	return 0; 
 }
 
@@ -45,6 +46,8 @@ BigNumber handleOperator(BigNumber b1, BigNumber b2, char _operator) {
             return b1.multiply(b2);
         case '/':
             return b1.divide(b2);
+        case '^':
+            return b1.multiply(b2);
         default:
             return 0;
     }

@@ -280,6 +280,20 @@ BigNumber BigNumber::multiplyString(const std::string &other) {
     return this->multiply(BigNumber(other));
 }
 
+BigNumber BigNumber::pow(BigNumber exponent) {
+    BigNumber result("1");
+    BigNumber a = *this;
+    BigNumber b = exponent;
+
+    while (a > 1 && b > 0) {
+        if (b._numberString[b._numberString.length() - 1] % 2 == 1) result *= a;
+        b /= 2;
+        a *= a;
+    }
+
+    return result;
+}
+
 BigNumber BigNumber::divide(BigNumber other) {
     if (other == 0) {
         std::cerr << "You cannot divide by 0!" << std::endl;

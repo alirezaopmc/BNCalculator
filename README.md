@@ -1,2 +1,2 @@
 # BNCalculator
-Big Number Calculator - School Project
+Big Number Calculator - University Project

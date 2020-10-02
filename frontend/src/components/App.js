@@ -2,13 +2,7 @@ import React from 'react';
 //import bnApi from '../apis/bnApi';
 import Calculator from './Calculator';
 import Integral from './Integral';
-import {
-  Router,
-  Route,
-  Switch,
-  HashRouter,
-  BrowserRouter,
-} from 'react-router-dom';
+import { Route, Switch, HashRouter, BrowserRouter } from 'react-router-dom';
 
 //THIS HAS BEEN THE MOST MESSY AND SLOPPY REACT PROJECT I HAVE DONE. SORRY IF MY CODE LOOKS LIkE S*IT!
 

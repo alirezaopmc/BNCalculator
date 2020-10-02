@@ -8,6 +8,7 @@ const isDev = require('electron-is-dev');
 const { ipcMain } = require('electron');
 
 let mainWindow;
+let integralWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -39,10 +40,18 @@ function createIntegralWindow() {
       : `file://${path.join(__dirname, '../build/index.html#integral')}`
   );
   integralWindow.on('closed', () => (mainWindow = null));
+  integralWindow.removeMenu();
 }
 
 ipcMain.on('openIntegralWindow', () => {
   createIntegralWindow();
+});
+
+ipcMain.on('resizeWindow', (e, deg) => {
+  if (deg < 300) {
+    integralWindow.setFullScreen(false);
+    integralWindow.setSize(400 + deg * 2, 560 + deg * 2);
+  } else integralWindow.setFullScreen(true);
 });
 
 app.on('ready', createWindow);

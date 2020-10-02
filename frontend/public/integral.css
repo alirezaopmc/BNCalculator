@@ -3,8 +3,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   transition: all 0.4s;
+  overflow: auto;
+  height: 100%;
+}
+
+body::-webkit-scrollbar {
+  position: absolute;
+  width: 12px; /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: #173f5f; /* color of the tracking area */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
 }
 
 form {
@@ -73,13 +87,27 @@ input[type='number'] {
 
 .coff {
   text-align: center;
+  margin: 5px;
   border: 0;
   border-radius: 5px;
   width: 20px;
 }
 
 .result {
+  text-align: center;
   color: white;
   font-weight: bold;
   font-size: 200px;
+}
+
+.result-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.result.exp {
+  font-size: 50px;
 }

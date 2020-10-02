@@ -1,5 +1,6 @@
 import React from 'react';
 import calcIntegral from '../helpers/integral';
+const { ipcRenderer } = window.require('electron');
 
 class Integral extends React.Component {
   state = {
@@ -25,7 +26,7 @@ class Integral extends React.Component {
     coffArr.unshift(constant);
     let result = await calcIntegral(deg, coffArr, upper, lower);
     console.log(result);
-    this.setState({ result: result.definiteIntegral.data, resultState: true });
+    this.setState({ result, resultState: true });
   };
 
   coffChange = (e, index) => {
@@ -37,6 +38,11 @@ class Integral extends React.Component {
   };
 
   render() {
+    if (this.state.deg >= 10) {
+      console.log('resize');
+      ipcRenderer.send('resizeWindow', this.state.deg);
+    }
+
     if (!this.state.resultState) {
       return (
         <div>
@@ -49,6 +55,7 @@ class Integral extends React.Component {
                   value={this.state.upper}
                   className="upperInput"
                   type="number"
+                  required
                 />
                 <p>Lower Bound</p>
                 <input
@@ -56,6 +63,7 @@ class Integral extends React.Component {
                   value={this.state.lower}
                   className="lowerInput"
                   type="number"
+                  required
                 />
               </div>
               <p className="integral">∫</p>
@@ -68,6 +76,7 @@ class Integral extends React.Component {
                   value={this.state.deg}
                   className="deg"
                   type="number"
+                  required
                 />
               </div>
               <div className={this.state.deg ? 'box' : ''}>
@@ -78,6 +87,7 @@ class Integral extends React.Component {
                       this.setState({ constant: e.target.value })
                     }
                     className="coff"
+                    required
                   />
                   x^0+
                 </span>
@@ -87,6 +97,7 @@ class Integral extends React.Component {
                       value={this.state.coffArr[index]}
                       onChange={(e) => this.coffChange(e, index)}
                       className="coff"
+                      required
                     />
                     +x^{index + 1}
                   </span>
@@ -101,8 +112,25 @@ class Integral extends React.Component {
       );
     } else {
       return (
-        <div>
-          <p className="result">{this.state.result}</p>
+        <div className="result-container">
+          <p className="result exp">{this.state.result.perciseResult}</p>
+          <p className="result exp">{this.state.result.result}</p>
+          <p className="result">{this.state.result.definiteIntegral.data}</p>
+          <button
+            className="box recalc"
+            onClick={() =>
+              this.setState({
+                resultState: false,
+                result: '',
+                coffArr: [],
+                deg: '',
+                upper: '',
+                lower: '',
+              })
+            }
+          >
+            Calculate Another Number
+          </button>
         </div>
       );
     }

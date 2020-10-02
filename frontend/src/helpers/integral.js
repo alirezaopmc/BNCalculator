@@ -4,10 +4,12 @@ import axios from 'axios';
 async function calcIntegral(degree, coffArr, top, bottom) {
   let resultObj = {};
   let result = ``;
+  let perciseResult = ``;
   coffArr.forEach((coff, deg) => {
     if (coff != 0) {
       resultObj = { ...resultObj, [deg + 1]: coff / (deg + 1) };
-      result += `+${Math.floor(coff / (deg + 1))}*(x^${deg + 1})`;
+      result += `+${Math.ceil(coff / (deg + 1))}*(x^${deg + 1})`;
+      perciseResult += `${coff / (deg + 1)}*(x^${deg + 1})`;
     }
   });
 
@@ -18,8 +20,6 @@ async function calcIntegral(degree, coffArr, top, bottom) {
   let upper = result.replace(/x/g, `${top}`);
   let lower = result.replace(/x/g, `${bottom}`);
 
-  console.log(`(${upper})-(${lower})`);
-
   let definiteIntegral = await axios.post('http://localhost:3001/calculate', {
     exp: `(${upper})-(${lower})`,
   });
@@ -29,7 +29,7 @@ async function calcIntegral(degree, coffArr, top, bottom) {
   //   lower += +coff * power(bottom, deg);
   // }
 
-  return { definiteIntegral, result };
+  return { definiteIntegral, result, perciseResult };
 }
 
 export default calcIntegral;

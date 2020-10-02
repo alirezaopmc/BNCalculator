@@ -291,6 +291,7 @@ BigNumber BigNumber::pow(BigNumber exponent) {
         a *= a;
     }
 
+    // logB (logB + logA^2)
     return result;
 }
 

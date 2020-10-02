@@ -1,37 +1,40 @@
 import React from 'react';
 //import bnApi from '../apis/bnApi';
-import axios from 'axios';
 import Calculator from './Calculator';
+import Integral from './Integral';
+import {
+  Router,
+  Route,
+  Switch,
+  HashRouter,
+  BrowserRouter,
+} from 'react-router-dom';
+
+//THIS HAS BEEN THE MOST MESSY AND SLOPPY REACT PROJECT I HAVE DONE. SORRY IF MY CODE LOOKS LIkE S*IT!
 
 class App extends React.Component {
-  state = { data: null, loading: false };
-
-  onFormSubmit = async (term) => {
-    this.setState({ loading: true });
-    try {
-      const res = await axios.post('http://localhost:3001/calculate', {
-        exp: term,
-      });
-      this.setState({
-        data: res.data,
-        loading: false,
-      });
-    } catch (error) {
-      this.setState({
-        data: 'REQUEST FAILED',
-        loading: false,
-      });
-    }
-  };
+  state = { data: null };
 
   render() {
-    const { data, loading } = this.state;
-
-    return (
-      <div>
-        <Calculator result={this.state.data} onFormSubmit={this.onFormSubmit} />
-      </div>
-    );
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+      return (
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={Calculator}></Route>
+            <Route exact path="/integral" component={Integral}></Route>
+          </Switch>
+        </BrowserRouter>
+      );
+    } else {
+      return (
+        <HashRouter>
+          <Switch>
+            <Route exact path="/" component={Calculator}></Route>
+            <Route exact path="/integral" component={Integral} />
+          </Switch>
+        </HashRouter>
+      );
+    }
   }
 }
 

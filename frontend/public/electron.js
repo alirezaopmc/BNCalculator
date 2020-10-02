@@ -12,7 +12,7 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 400,
-    height: 580,
+    height: 560,
     frame: false,
     resizable: false,
     webPreferences: { nodeIntegration: true },
@@ -25,6 +25,25 @@ function createWindow() {
   //   mainWindow.removeMenu();
   mainWindow.on('closed', () => (mainWindow = null));
 }
+
+function createIntegralWindow() {
+  integralWindow = new BrowserWindow({
+    width: 400,
+    height: 560,
+    frame: true,
+    webPreferences: { nodeIntegration: true },
+  });
+  integralWindow.loadURL(
+    isDev
+      ? 'http://localhost:3000/integral'
+      : `file://${path.join(__dirname, '../build/index.html#integral')}`
+  );
+  integralWindow.on('closed', () => (mainWindow = null));
+}
+
+ipcMain.on('openIntegralWindow', () => {
+  createIntegralWindow();
+});
 
 app.on('ready', createWindow);
 

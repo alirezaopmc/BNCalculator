@@ -79,6 +79,13 @@ public:
     BigNumber pow(int exponent);
 
     /**
+     * Raise the current instance to the power of an exponent
+     * @param exponent - The power to be raised by
+     * @return - The resulting BigNumber after exponentiation
+     */
+    BigNumber pow(BigNumber exponent);
+
+    /**
      * Get the string value of the current instance
      * @return The BigNumber as a string
      */

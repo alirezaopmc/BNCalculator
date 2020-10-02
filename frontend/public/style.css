@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  color: white;
+  background-color: #161716 !important;
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+}
+
+.frame-control {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.frame-control button {
+  z-index: 100;
+  border: 0;
+  padding: 0 10px;
+  background-color: #173f5f;
+  color: white;
+  font-size: 45px;
+  margin: 0;
+}
+
+#minus {
+  cursor: pointer;
+  transition: 0.3s;
+  outline: 0;
+}
+
+#minus:hover {
+  transition: 0.3s;
+  background-color: rgb(129, 129, 129);
+}
+
+#times {
+  cursor: pointer;
+  transition: 0.3s;
+  outline: 0;
+}
+
+#times:hover {
+  transition: 0.3s;
+  background-color: red;
+}
+
+.container {
+  background-color: #262928;
+  width: 400px;
+  height: 560px;
+  /* border-radius: 10px;*/
+}
+
+.header {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  background-color: #173f5f;
+  /* border-top-right-radius: 10px;
+  border-top-left-radius: 10px; */
+  padding: 5px 5px 50px 5px;
+  position: relative;
+}
+
+.header button {
+  -webkit-app-region: no-drag;
+}
+
+.num-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #262928;
+  height: 125px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+.num-box {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  background-color: #161716;
+  /* border-radius: 5px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.left {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left button {
+  background-color: #f8d605;
+  cursor: pointer;
+  color: black;
+  height: 35px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 35px;
+  border: 2px solid #173f5f;
+  margin-top: 10px;
+  margin-left: 20px;
+  border-radius: 5px;
+  padding: 0;
+  transition: all 0.8s;
+}
+
+.left button:hover {
+  background-color: #29367c;
+  color: white;
+}
+
+.left button:focus {
+  outline: 0;
+}
+
+.left div {
+  background-color: red;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-left: 30px;
+  margin-bottom: 15px;
+  filter: blur(3px);
+}
+
+.left span {
+  color: rgb(38, 66, 66);
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.right {
+  background-color: blueviolet;
+  width: 85%;
+  margin: 10px 10px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#121618+0,14191c+100 */
+  background: #121618; /* Old browsers */
+  background: -moz-linear-gradient(
+    top,
+    #1d2427 0%,
+    #151e24 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    #12191d 0%,
+    #131b20 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #0e1316 0%,
+    #181f24 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#121618', endColorstr='#14191c',GradientType=0 ); /* IE6-9 */
+  /* border-radius: 5px; */
+}
+.right textarea {
+  background-color: transparent;
+  border: 0;
+  color: white;
+  font-size: 27px;
+  text-align: right;
+  margin-top: 13px;
+}
+
+.right textarea:focus {
+  outline: none;
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(4, 0fr);
+  grid-gap: 0;
+  margin-top: 0;
+}
+
+.button-container button {
+  background-color: #161616;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 95px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 100px;
+  margin: 0;
+  transition: all 0.8s;
+
+  border: 1px solid rgba(129, 129, 129, 0.2);
+  /* box-shadow: inset -1px 3px 8px 5px #1b1b1b, 2px 5px 16px 0px #262928,
+    2px 2px 2px 2px rgba(0, 0, 0, 0.3); */
+}
+.button-container button:active {
+  background-color: #6eb9f7;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.button-container button:focus {
+  outline: 0;
+}
+
+.button-container button:nth-child(4) {
+  background-color: #f8d605;
+  color: black;
+  /* box-shadow: 2px 5px 16px 0px #262928, 2px 2px 2px 2px rgba(0, 0, 0, 0.3); */
+}
+
+.button-container button:nth-child(4):hover {
+  background-color: #ffd643;
+}
+
+.button-container button:nth-child(8) {
+  background-color: #f8d605;
+  color: black;
+  /* box-shadow: 2px 5px 16px 0px #262928, 2px 2px 2px 2px rgba(0, 0, 0, 0.3); */
+}
+
+.button-container button:nth-child(8):hover {
+  background-color: #ffd643;
+}
+
+.button-container button:nth-child(12) {
+  background-color: #f8d605;
+  color: black;
+  /* box-shadow: 2px 5px 16px 0px #262928, 2px 2px 2px 2px rgba(0, 0, 0, 0.3); */
+}
+
+.button-container button:nth-child(12):hover {
+  background-color: #ffd643;
+}
+
+.button-container button:nth-child(14) {
+  background-color: #173f5f;
+  color: white;
+  /* box-shadow: 2px 5px 16px 0px #262928, 2px 2px 2px 2px rgba(0, 0, 0, 0.3); */
+}
+
+.button-container button:nth-child(14):hover {
+  background-color: #1c507a;
+}
+
+.button-container button:nth-child(15) {
+  background-color: #f8d605;
+  color: black;
+  /* box-shadow: 2px 5px 16px 0px #262928, 2px 2px 2px 2px rgba(0, 0, 0, 0.3); */
+}
+
+.button-container button:nth-child(15):hover {
+  background-color: #ffd643;
+}
+
+.button-container button:nth-child(16) {
+  background-color: #f8d605;
+  color: black;
+  /* box-shadow: 2px 5px 16px 0px #262928, 2px 2px 2px 2px rgba(0, 0, 0, 0.3); */
+}
+
+.button-container button:nth-child(16):hover {
+  background-color: #ffd643;
+}
+
+.button-container button:hover {
+  background-color: #2c2c2c;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.button-container button:hover {
+  background-color: #2c2c2c;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.button-container button:active {
+  top: 3px;
+}

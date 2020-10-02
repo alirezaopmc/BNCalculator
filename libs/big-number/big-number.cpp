@@ -207,6 +207,11 @@ BigNumber BigNumber::subtractString(const std::string &other) {
 }
 
 BigNumber BigNumber::multiply(BigNumber other) {
+    if (other == 10) {
+        std::string result = (*this)._numberString + "0";
+        return BigNumber(result);
+    }
+
     BigNumber b1 = other > *this ? other : *this;
     BigNumber b2 = other > *this ? *this : other;
     if (b1.isNegative() || b2.isNegative()) {
@@ -275,10 +280,35 @@ BigNumber BigNumber::multiplyString(const std::string &other) {
     return this->multiply(BigNumber(other));
 }
 
+BigNumber BigNumber::pow(BigNumber exponent) {
+    BigNumber result("1");
+    BigNumber a = *this;
+    BigNumber b = exponent;
+
+    while (a > 1 && b > 0) {
+        if (b._numberString[b._numberString.length() - 1] % 2 == 1) result *= a;
+        b /= 2;
+        a *= a;
+    }
+
+    return result;
+}
+
 BigNumber BigNumber::divide(BigNumber other) {
     if (other == 0) {
         std::cerr << "You cannot divide by 0!" << std::endl;
     }
+
+    if (other == 1) {
+        return *this;
+    }
+
+    if (other == 10) {
+        std::string result = (*this)._numberString;
+        result.pop_back();
+        return BigNumber(result);
+    }
+
     BigNumber b1 = *this, b2 = other;
     bool sign = false;
     if (b1.isNegative() && b2.isNegative()) {
@@ -293,12 +323,39 @@ BigNumber BigNumber::divide(BigNumber other) {
         b2.negate();
         sign = true;
     }
-    BigNumber quotient = 0;
-    while (b1 >= b2) {
-        b1 -= b2;
-        ++quotient;
+    
+    BigNumber quotient("0");
+    int n = b1._numberString.length();
+    int m = b2._numberString.length();
+
+    if (n < m) {
+        return 0;
+    } else if (n-m < 5) {
+        while (b1 >= b2 && b1 > 0) {
+            b1 -= b2;
+            quotient += 1;
+        }
+    } else {
+        BigNumber a = b1;
+        BigNumber b = b2;
+
+        while (b * 10 < a) b *= 10;
+
+        while (b > 0) {
+            while(a >= b) {
+                a -= b;
+                quotient += 1;
+            }
+            b /= 10;
+            quotient *= 10;
+        }
+
+        quotient /= 10;
     }
-    if (sign) quotient.negate();
+
+    if (sign) {
+        quotient.negate();
+    }
     return quotient;
 }
 

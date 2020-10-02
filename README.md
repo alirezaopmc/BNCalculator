@@ -41,12 +41,5 @@ run the server:
 
 ## API Request Visualization
 
-
-
-```mermaid
-graph LR
-A[UI] -- Expression String --> B((POST))
-D -- Result String --> A
-B -- HTTP Request --> D{API}
-
+![enter image description here](https://i.ibb.co/yngD775/photo-2020-10-02-17-50-08.jpg)
 ```

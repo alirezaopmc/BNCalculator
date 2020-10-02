@@ -47,7 +47,7 @@ BigNumber handleOperator(BigNumber b1, BigNumber b2, char _operator) {
         case '/':
             return b1.divide(b2);
         case '^':
-            return b1.multiply(b2);
+            return b1.pow(b2);
         default:
             return 0;
     }
